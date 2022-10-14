@@ -18,7 +18,7 @@ connectDB();
 
 
 app.use(cors());
-// middleware to convert our request data into JSON format
+// middleware to convert our   request data into JSON format
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : true}));
 
