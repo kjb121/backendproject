@@ -50,28 +50,54 @@ exports.findOne = async(req, res) => {
 // --------------------- CREATE and Post ------------------
 
 
-exports.create = (req, res) => {
-    // validate request
-    if (!req.body) {
-        res.status(400).send({ message: "content can not be empty" });
-        return;
+// exports.create = (req, res) => {
+//     // validate request
+//     if (!req.body) {
+//         res.status(400).send({ message: "content can not be empty" });
+//         return;
+//     }
+//     console.log(req.body);
+//     const user = new User(req.body);
+
+//     // saving user in the database
+//     user
+//         .save(user)
+//         .then(data => {
+//             res.json({ message: "OK", data })
+//         })
+//         .catch(err => {
+//             res.status(500).send({
+//                 message: err.message || "Error occured in create operation"
+//             });
+//         });
+// }
+
+
+    exports.create= async(req,res)=>{
+        if(!req.body.email=="" && !req.body.name==""){
+            const findEmail = await User.find({'email':req.body.email})
+            console.log(findEmail)
+            if(findEmail.length==0){
+                try {
+
+                    const Upeople = new User(req.body)
+                    const data = await Upeople.save()
+                    res.status(201).json({ message: "Ok", data })
+
+                }
+                catch (error) {
+                    res.status(500).json({message:"Server Error"})
+                }
+            }
+            else{
+                res.status(500).json({message:"Email already exists"})
+            }
+
+        }
+        else{
+            res.status(500).json({message:"Please enter email and name"})
+        }
     }
-    console.log(req.body);
-    const user = new User(req.body);
-
-    // saving user in the database
-    user
-        .save(user)
-        .then(data => {
-            res.json({ message: "OK", data })
-        })
-        .catch(err => {
-            res.status(500).send({
-                message: err.message || "Error occured in create operation"
-            });
-        });
-}
-
 
 //update a new user by userid
 exports.update = (req, res) => {
