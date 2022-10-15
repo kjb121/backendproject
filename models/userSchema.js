@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 // const cc = require('../models/Todo');
+const Task = require('../models/Todo');
 
 var validateEmail = function(email) {
   var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -19,7 +20,10 @@ var userSchema = new mongoose.Schema({
       validate: [validateEmail, 'Please fill a valid email address'],
       match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
 },
-    pendingTasks :[{ type: String }],
+    pendingTasks :[{ 
+      type: mongoose.Schema.Types.ObjectId,
+      ref : 'Task'
+     }],
                     
     dateCreated : {
       type: Date,

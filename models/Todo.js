@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+// const User = require('../models/userSchema');
 
 
 const taskSchema = new mongoose.Schema({
@@ -24,6 +24,7 @@ const taskSchema = new mongoose.Schema({
 
   assignedUserName: {
     type: String,
+    ref: 'User',
     default: "unassigned"
   },
 
