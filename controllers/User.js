@@ -12,7 +12,7 @@ exports.find = (req, res) => {
     // .catch(err=>{
     //     res.status(500).send({ message: err.message || "Error occurred while retrieving user info"})
     // }) 
-
+    
     User.find(eval("(" + req.query.where + ")"))
         .select(eval("(" + req.query.select + ")"))
         .sort(eval("(" + req.query.sort + " )"))
@@ -24,12 +24,13 @@ exports.find = (req, res) => {
             if (error) {
                 res.send(error);
             } else {
-                res.json({ message: "success", count: data.length, data });
+                res.json({ message: "success", Results: data.length, data });
             }
         });
 }
 
-// ................FInd one Task...........
+// ................FInd one User...........
+
 exports.findOne = async(req, res) => {
     try{
         const data = await User.findById(req.params.id)
@@ -45,6 +46,7 @@ exports.findOne = async(req, res) => {
         res.status(404).send("No Records Found")
     }
     }
+    
 
 
 // --------------------- CREATE and Post ------------------

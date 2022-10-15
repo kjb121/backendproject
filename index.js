@@ -26,12 +26,11 @@ app.use(bodyParser.urlencoded({extended : true}));
 app.use("/api", todoRoutes);
 
 //No ROUTE 404 lINK
-// app.all('*', (req, res) => {
-//   res.status(404).send('<div style="display:flex; flex-direction: column; align-items: center;justify-content:center"><h1> Error 404! Page not found</h1><h3>Try Different EndPoints</h3></div1>');
-// });
+
 app.all('*', (req, res) => {
   res.status(404).send('Error 404! Page not found Try Different EndPoints');
 });
+
 
 // start the server in the port 4000
 app.listen(PORT, () => {

@@ -5,13 +5,13 @@ const Task = require('../models/Todo');
 // ------------------ FIND method ------------------
 exports.find = (req,res) => {
 
-    Task.find()
-    .then(user => {
-        res.send(user)
-    })
-    .catch(err=>{
-        res.status(500).send({ message: err.message || "Error occurred while retrieving user info"})
-    })
+    // Task.find()
+    // .then(user => {
+    //     res.send(user)
+    // })
+    // .catch(err=>{
+    //     res.status(500).send({ message: err.message || "Error occurred while retrieving Task info"})
+    // })
     Task.find(eval("(" + req.query.where + ")"))
     .select(eval("(" + req.query.select + ")"))
     .sort(eval("(" + req.query.sort + " )"))
@@ -23,7 +23,7 @@ exports.find = (req,res) => {
       if (error) {
         res.send(error);
       } else {
-        res.json({ message: "success", data });
+        res.json({ message: "success",Results : data.length, data });
       }
     });
 
