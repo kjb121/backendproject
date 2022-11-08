@@ -26,8 +26,8 @@ router.put("/tasks/:id/", taskCont.update);
 router.put("/users/:id/", userCont.update);
 
 // to delete the task or User
-router.delete("/tasks/:id/", ,taskCont.delete);
-router.delete("/users/:id/", ,userCont.delete);
+router.delete("/tasks/:id/", taskCont.delete);
+router.delete("/users/:id/", userCont.delete);
 
 // exporting the router to import it in index.js
 module.exports = router;
