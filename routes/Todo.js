@@ -1,5 +1,5 @@
 const express = require("express");
-const services = require('../services/render');
+const services = require("../services/render");
 const userCont = require("../controllers/User");
 const taskCont = require("../controllers/Task");
 const router = express.Router();
@@ -8,7 +8,6 @@ const router = express.Router();
 // it will fetch the value from the url
 // router.param("tasks/:id", userCont.find);
 // router.param("users/:id", userCont.find);
-
 
 // to get all the tasks & Users
 router.get("/tasks/", taskCont.find);
@@ -24,12 +23,11 @@ router.post("/users/", userCont.create);
 
 // to update the task / user
 router.put("/tasks/:id/", taskCont.update);
-router.put("/users/:id/", userCont.update); 
+router.put("/users/:id/", userCont.update);
 
 // to delete the task or User
-router.delete("/tasks/:id/", taskCont.delete);
-router.delete("/users/:id/", userCont.delete);
-
+router.delete("/tasks/:id/", ,taskCont.delete);
+router.delete("/users/:id/", ,userCont.delete);
 
 // exporting the router to import it in index.js
 module.exports = router;
